@@ -1,5 +1,5 @@
-const express = require('express')
-const sqlite3 = require('sqlite3')
+import express from 'express'
+import sqlite3 from 'sqlite3'
 
 const app = express()
 const port = 4001
