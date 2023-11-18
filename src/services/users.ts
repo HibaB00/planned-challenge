@@ -6,5 +6,5 @@ export function index(){
 }
 
 export function show(id: User["id"]){
-  return axios.get<Array<User>>(`http://localhost:4001/users/${id}`)
+  return axios.get<User>(`http://localhost:4001/users/${id}`)
 }
