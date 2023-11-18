@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { submit } from "../../services/memories";
 import { NewMemory } from "../../types/Memory";
 
@@ -9,9 +9,11 @@ function Create() {
     formState: { errors },
   } = useForm<NewMemory>()
 
+  const create: SubmitHandler<NewMemory> = (data) => submit(data).then(() => window.location = "/")
+
   return (
     <div>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(create)}>
       <input {...register("name", { required: true })} />
       <input {...register("description", { required: true })} />
       <input type="date" {...register("timestamp", { required: true })} />
