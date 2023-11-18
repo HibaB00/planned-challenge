@@ -1,7 +1,9 @@
 import { CubeIcon } from '@heroicons/react/20/solid'
-import './App.css'
+import UserCard from '../../components/UserCard'
 
-function App() {
+const newUser = {id: 42, first_name: 'Hiba', last_name: 'Bayazid', description: 'Hire me please :)'}
+
+function Index() {
   return (
     <div>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8 mt-32'>
@@ -13,6 +15,9 @@ function App() {
                 Memory lane
               </h1>
             </div>
+            <div>
+              <UserCard user={newUser}/>
+            </div>
           </div>
         </div>
       </div>
@@ -20,4 +25,6 @@ function App() {
   )
 }
 
-export default App
+export default Index;
+
+

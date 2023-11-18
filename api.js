@@ -1,11 +1,13 @@
 import express from 'express'
 import sqlite3 from 'sqlite3'
+import cors from 'cors'
 
 const app = express()
 const port = 4001
 const db = new sqlite3.Database('memories.db')
 
 app.use(express.json())
+app.use(cors())
 
 db.serialize(() => {
   db.run(`
