@@ -1,9 +1,16 @@
 import { CubeIcon } from '@heroicons/react/20/solid'
 import UserCard from '../../components/UserCard'
-
-const newUser = {id: 42, first_name: 'Hiba', last_name: 'Bayazid', description: 'Hire me please :)'}
+import { useEffect, useState } from 'react';
+import { User } from '../../types/User';
+import { index } from '../../services/users';
 
 function Index() {
+  const [users, setUsers] = useState<Array<User>>([])
+
+  useEffect(() => {
+    index().then(res => setUsers(res.data))
+  }, [])
+
   return (
     <div>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8 mt-32'>
@@ -16,7 +23,7 @@ function Index() {
               </h1>
             </div>
             <div>
-              <UserCard user={newUser}/>
+              {users.map(user => <UserCard user={user}/>)}
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import {
 import UsersIndex from './pages/users/Index.tsx'
 import './index.css'
 import UsersShow from './pages/users/Show.tsx'
+import MemoriesShow from './pages/memories/Show.tsx'
 import Create from './pages/memories/Create.tsx'
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/users/:id',
     element: <UsersShow />
+  },
+  {
+    path: '/memories/:id',
+    element: <MemoriesShow />
   },
   {
     path: '/memories/create',

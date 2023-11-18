@@ -1,6 +1,8 @@
+import { Memory } from "./Memory"
+
 export type User = {
   id: number,
-  first_name: string,
-  last_name: string,
-  description: string
+  name: string,
+  description: string,
+  memories: Array<Memory>
 }
