@@ -1,14 +1,22 @@
-import { Link } from "react-router-dom"
 import { User } from "../types/User"
+import { Avatar, ListItem, ListItemAvatar, ListItemText} from "@mui/material"
+import React from "react"
 
-function UserCard({user: {id, name, description}}: {user: User}){
+function UserCard({user: {name, description, image_url}}: {user: User}){
   return(
-    <Link to={`/users/${id}`}>
-      <div className='m-4 w-64 h-32 rounded-lg bg-white shadow'>
-        <h2>{name}</h2>
-        <p>{description}</p>
-      </div>
-    </Link>
+    <ListItem alignItems="flex-start">
+      <ListItemAvatar>
+        <Avatar alt={name} src={image_url} />
+      </ListItemAvatar>
+      <ListItemText
+        primary={name}
+        secondary={
+          <React.Fragment>
+            {description}
+          </React.Fragment>
+        }
+      />
+    </ListItem>
   )
 }
 

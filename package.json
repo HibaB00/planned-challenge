@@ -11,7 +11,11 @@
     "serve:api": "nodemon api/api.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.0.18",
+    "@mui/icons-material": "^5.14.18",
+    "@mui/material": "^5.14.18",
     "axios": "^1.6.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",

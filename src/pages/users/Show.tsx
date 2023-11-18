@@ -3,26 +3,46 @@ import MemoryCard from "../../components/MemoryCard";
 import { show } from "../../services/users";
 import { useEffect, useState } from "react";
 import { User } from "../../types/User";
+import { Button, Stack} from "@mui/material";
+import Start from "../../assets/start.png"
+import End from "../../assets/end.png"
+import Seperator from "../../components/MoreDots";
+import UserCard from "../../components/UserCard";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Show() {
   const { id } = useParams();
   const [user, setUser] = useState<User>();
+  const { currentUser } = useAuth(); 
 
   useEffect(() => {
     show(+id!).then(res => setUser(res.data))
   }, [id])
   
-  return (
-    <div>
-      <div className='mx-auto max-w-7xl sm:px-6 lg:px-8 mt-32'>
-        <h1>{`${user?.name}`}</h1>
-        <p>{user?.description}</p>
-        <div className='overflow-hidden rounded-lg bg-white shadow h-96'>
-          <Link to='/memories/create'>New memory</Link>   
-          {user?.memories.map((memory) => <MemoryCard memory={memory}/>)}
-        </div>
-      </div>
-    </div>
+  return user && (
+    <Stack gap={4} paddingY={4} flexDirection="column" alignItems="center">
+      <Stack direction="row">
+        <UserCard user={user}/>
+      </Stack>
+      <Stack gap={3} padding={3}>
+        <Stack gap={2} flexDirection="column" alignItems="center">
+          { currentUser?.id == id ?
+            <Link to='/memories/create'>
+              <Button variant="outlined" color="info">New Memory</Button>
+            </Link> : null
+          }
+          <img src={End} alt="" width={120} />
+          {user?.memories.map((memory) =>
+            <>
+              <Seperator /> 
+              <MemoryCard memory={memory}/>
+            </>
+          )}
+          <Seperator />
+          <img src={Start} alt="" width={120} />
+        </Stack>
+      </Stack>
+    </Stack>
   )
 }
 
