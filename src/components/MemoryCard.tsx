@@ -32,16 +32,16 @@ function MemoryCard({ memory }: { memory: Memory }) {
           {memory.timestamp}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <Link to={`/memories/${memory.id}/edit`}>
-          <IconButton aria-label='edit'>
-            <Edit />
-          </IconButton>
-        </Link>
-        {currentUser?.id === memory.user_id ? (
+      {currentUser?.id === memory.user_id ? (
+        <CardActions disableSpacing>
+          <Link to={`/memories/${memory.id}/edit`}>
+            <IconButton aria-label='edit'>
+              <Edit />
+            </IconButton>
+          </Link>
           <DeleteMemory memory={memory} />
-        ) : null}
-      </CardActions>
+        </CardActions>
+      ) : null}
     </Card>
   )
 }

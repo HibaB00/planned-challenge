@@ -2,6 +2,7 @@ import { Button, Container, Stack, TextField } from '@mui/material'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useAuth } from '../contexts/AuthContext'
 import { NewMemory } from '../types/Memory'
+import { useNavigate } from 'react-router-dom'
 
 type MemoryFormProps = {
   onSubmit: SubmitHandler<NewMemory>
@@ -20,9 +21,11 @@ export default function MemoryForm({
     defaultValues: defaultMemory,
   })
 
+  const navigate = useNavigate()
+
   const { currentUser } = useAuth()
 
-  if (!currentUser) return <p>YOU DON'T HAVE ACCESS</p>
+  if (!currentUser) navigate(`/users`)
 
   return (
     <Container maxWidth='sm'>
