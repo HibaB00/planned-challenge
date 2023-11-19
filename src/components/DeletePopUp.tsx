@@ -12,7 +12,7 @@ import { remove } from '../services/memories'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
-export default function AlertDialog({
+export default function DeleteMemory({
   memory: { name, id },
 }: {
   memory: Memory

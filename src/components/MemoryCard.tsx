@@ -1,5 +1,5 @@
 import { Memory } from '../types/Memory'
-import { Edit, Share } from '@mui/icons-material'
+import { Edit } from '@mui/icons-material'
 import {
   Card,
   CardActions,
@@ -8,8 +8,9 @@ import {
   IconButton,
   Typography,
 } from '@mui/material'
-import AlertPopUp from './AlertPopUp'
+import DeleteMemory from './DeletePopUp'
 import { useAuth } from '../contexts/AuthContext'
+import { Link } from 'react-router-dom'
 
 function MemoryCard({ memory }: { memory: Memory }) {
   const { currentUser } = useAuth()
@@ -32,14 +33,13 @@ function MemoryCard({ memory }: { memory: Memory }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label='edit'>
-          <Edit />
-        </IconButton>
-        <IconButton aria-label='share'>
-          <Share />
-        </IconButton>
+        <Link to={`/memories/${memory.id}/edit`}>
+          <IconButton aria-label='edit'>
+            <Edit />
+          </IconButton>
+        </Link>
         {currentUser?.id === memory.user_id ? (
-          <AlertPopUp memory={memory} />
+          <DeleteMemory memory={memory} />
         ) : null}
       </CardActions>
     </Card>

@@ -7,6 +7,7 @@ import UsersShow from './pages/users/Show.tsx'
 import Create from './pages/memories/Create.tsx'
 import AuthContextProvider from './contexts/AuthContext.tsx'
 import App from './components/App.tsx'
+import Edit from './pages/memories/Edit.tsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: '/memories/create',
         element: <Create />,
+      },
+      {
+        path: 'memories/:id/edit',
+        element: <Edit />,
       },
     ],
   },
