@@ -28,9 +28,9 @@ export function show(req, res) {
 }
 
 export function create(req, res) {
-	const { name, description, timestamp } = req.body
+	const { name, description, timestamp, user_id, image_url } = req.body
 
-	if (!name || !description || !timestamp) {
+	if (!name || !description || !timestamp || !image_url) {
 		res.status(400).json({
 			error: 'Please provide all fields: name, description, timestamp',
 		})
@@ -38,9 +38,9 @@ export function create(req, res) {
 	}
 
 	const stmt = db.prepare(
-		'INSERT INTO memories (name, description, timestamp) VALUES (?, ?, ?)'
+		'INSERT INTO memories (name, description, timestamp, user_id, image_url) VALUES (?, ?, ?, ?, ?)'
 	)
-	stmt.run(name, description, timestamp, (err) => {
+	stmt.run(name, description, timestamp, user_id, image_url, (err) => {
 		if (err) {
 			res.status(500).json({ error: err.message })
 			return

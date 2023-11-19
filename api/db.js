@@ -59,11 +59,11 @@ function seed(db) {
 	`)
 
 	db.run(`
-		INSERT INTO memories (user_id, name, description, timestamp) VALUES
-			(1, 'Memorable Trip to Paris', 'Spent a magical week exploring the beautiful streets of Paris with breathtaking views of the Eiffel Tower.', CURRENT_TIMESTAMP),
-			(1, 'Art Exhibition Success', 'Showcased my latest art collection at a prestigious gallery, receiving positive reviews and connecting with fellow artists.', CURRENT_TIMESTAMP),
-			(1, 'Sunset Yoga by the Beach', 'Hosted a serene yoga session by the beach during sunset, creating a peaceful and rejuvenating experience for participants.', CURRENT_TIMESTAMP),
-			(1, 'Hiking Adventure', 'Conquered a challenging hiking trail, reaching the summit to witness a panoramic view of the surrounding mountains.', CURRENT_TIMESTAMP),
-			(1, 'Cozy Reading Nook', 'Created a cozy reading nook at home, spending quiet evenings immersed in captivating novels.', CURRENT_TIMESTAMP);
-	`)
+		INSERT INTO memories (user_id, name, description, timestamp, image_url) VALUES
+			(1, 'Memorable Trip to Paris', 'Spent a magical week exploring the beautiful streets of Paris with breathtaking views of the Eiffel Tower.', CURRENT_TIMESTAMP, 'https://www.campingfrance.com/asset/cms/600x337/158005/config/110123'),
+			(1, 'Art Exhibition Success', 'Showcased my latest art collection at a prestigious gallery, receiving positive reviews and connecting with fellow artists.', CURRENT_TIMESTAMP, 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_200,q_60,w_400/v1/clients/toronto/indigenous_art_toronto_gallery_f0488b93-5dd6-47cf-9dac-013e7f3a95c8.jpg'),
+			(1, 'Sunset Yoga by the Beach', 'Hosted a serene yoga session by the beach during sunset, creating a peaceful and rejuvenating experience for participants.', CURRENT_TIMESTAMP, 'https://www.waterfront-properties.com/images/new/yoga_in_delray_beach_by_waterfront_properties_600.jpeg'),
+			(1, 'Hiking Adventure', 'Conquered a challenging hiking trail, reaching the summit to witness a panoramic view of the surrounding mountains.', CURRENT_TIMESTAMP, 'https://media.gadventures.com/media-server/cache/76/dc/76dcc71a350b8ec1450f2ed8ca23edfe.jpg'),
+			(1, 'Cozy Reading Nook', 'Created a cozy reading nook at home, spending quiet evenings immersed in captivating novels.', CURRENT_TIMESTAMP, 'https://assets.hgtv.ca/wp-content/uploads/2022/03/reading-nook-hanging-chair-adrien-olichon-unsplash.jpg');
+  `)
 }
