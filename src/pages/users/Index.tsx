@@ -1,4 +1,3 @@
-import { CubeIcon } from '@heroicons/react/20/solid'
 import UserCard from '../../components/UserCard'
 import { useEffect, useState } from 'react';
 import { User } from '../../types/User';
@@ -18,17 +17,13 @@ function Index() {
 
   return (
     <Stack flexDirection="column" alignItems="center">
-      <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
-          <CubeIcon className='h-16 w-16 inline-block' />
-          <h1 className='text-4xl font-semibold text-gray-900 mb-4 ml-4 mt-4'>
-            Memory lane
-          </h1>
-          { currentUser ? <Button onClick={logout}>LOGOUT</Button> : <Button onClick={login}>LOGIN</Button> }
-          {users.map(user =>(
-            <Link to={`/users/${user.id}`}>
-              <UserCard user={user}/>
-            </Link>
-          ))}
+      <List>
+        { currentUser ? <Button onClick={logout}>LOGOUT</Button> : <Button onClick={login}>LOGIN</Button> }
+        {users.map(user =>(
+          <Link to={`/users/${user.id}`}>
+            <UserCard user={user}/>
+          </Link>
+        ))}
       </List>
     </Stack>
   )

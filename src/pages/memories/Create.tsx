@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { submit } from "../../services/memories";
 import { NewMemory } from "../../types/Memory";
 import { useAuth } from "../../contexts/AuthContext";
+import { Button, Container, Stack, TextField } from "@mui/material";
 
 function Create() {
   const {
@@ -17,20 +18,17 @@ function Create() {
   const create: SubmitHandler<NewMemory> = (data) => submit({...data, user_id: currentUser.id}).then(() => window.location = "/")
 
   return (
-    <div>
+    <Container maxWidth="sm">
       <form onSubmit={handleSubmit(create)}>
-      <input {...register("name", { required: true })} />
-      <input {...register("description", { required: true })} />
-      <input {...register("image_url", { required: true })} />
-      <input type="date" {...register("timestamp", { required: true })} />
-      {errors.name && <span>This field is required</span>}
-      {errors.name && <span>This field is required</span>}
-      {errors.description && <span>This field is required</span>}
-      {errors.image_url && <span>This field is required</span>}
-      {errors.timestamp && <span>This field is required</span>}
-      <input type="submit" />
+        <Stack paddingY={4} gap={2} flexDirection="column" alignItems="center">
+          <TextField error={!!errors.name} helperText={errors.name ? "This field is required" : ""} fullWidth id="outlined-basic" label="Name" variant="outlined" {...register("name", { required: true })}/>
+          <TextField error={!!errors.description} helperText={errors.description ? "This field is required" : ""} fullWidth multiline rows={7} id="outlined-basic" label="Description" variant="outlined" {...register("description", { required: true })}/>
+          <TextField error={!!errors.image_url} helperText={errors.image_url ? "This field is required" : ""} fullWidth id="outlined-basic" label="Image URL" variant="outlined" {...register("image_url", { required: true })}/>
+          <TextField error={!!errors.timestamp} helperText={errors.timestamp ? "This field is required" : ""} fullWidth InputLabelProps={{ shrink: true }} type="date" id="outlined-basic" label="Timestamp" variant="outlined" {...register("timestamp", { required: true })}/>
+          <Button variant="outlined" type="submit">Create</Button>
+        </Stack>
       </form>
-    </div>
+    </Container>
   )
 }
 
