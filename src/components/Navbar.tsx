@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CubeIcon } from '@heroicons/react/20/solid'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,14 +11,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import Logo from './Logo';
+import { SvgIcon } from '@mui/material';
 
-const pages = ['People', 'My Memories'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['People'];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const { currentUser, login, logout } = useAuth();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -40,7 +42,11 @@ function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <CubeIcon className='h-12 w-12'/>
+          <Link to={`/`}>
+            <SvgIcon viewBox='0 0 35 38' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+              <Logo />
+            </SvgIcon>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -71,13 +77,19 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <Link to={'/users'}>
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Link to={`/`}>
+            <SvgIcon viewBox='0 0 35 38' sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+              <Logo />
+            </SvgIcon>
+          </Link>
           <Typography
             variant="h5"
             noWrap
@@ -94,25 +106,30 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <Link to={'/users'}>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              </Link>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+              { currentUser ?  
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src={currentUser?.image_url}/>
+                </IconButton>
+                :
+                <Button variant="contained" color="warning" onClick={login}>LOGIN</Button>
+              }
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
@@ -130,11 +147,14 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              <Link to={`/users/${currentUser?.id}`}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">My Memories</Typography>
                 </MenuItem>
-              ))}
+              </Link>
+              <MenuItem onClick={() => {handleCloseUserMenu(); logout();}}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
