@@ -2,7 +2,6 @@ import { Share } from '@mui/icons-material'
 import { User } from '../types/User'
 import {
   Avatar,
-  IconButton,
   ListItem,
   ListItemAvatar,
   ListItemText,
@@ -10,14 +9,13 @@ import {
 } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import CopyToClipboard from './CopyToClipboard'
 
 function UserCard({
   user: { name, description, image_url, id },
 }: {
   user: User
 }) {
-  const copyToClipboard = () =>
-    navigator.clipboard.writeText(`http://localhost:5173/users/${id}`)
   return (
     <Stack direction='row' spacing={2}>
       <Link to={`/users/${id}`}>
@@ -31,9 +29,11 @@ function UserCard({
           />
         </ListItem>
       </Link>
-      <IconButton aria-label='share' onClick={() => copyToClipboard}>
+      <CopyToClipboard
+        text={`${window.location.protocol}//${window.location.host}/users/${id}`}
+      >
         <Share />
-      </IconButton>
+      </CopyToClipboard>
     </Stack>
   )
 }

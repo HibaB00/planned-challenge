@@ -4,10 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import UsersIndex from './pages/users/Index.tsx'
 import './index.css'
 import UsersShow from './pages/users/Show.tsx'
-import Create from './pages/memories/Create.tsx'
+import MemoriesCreate from './pages/memories/Create.tsx'
 import AuthContextProvider from './contexts/AuthContext.tsx'
 import App from './components/App.tsx'
-import Edit from './pages/memories/Edit.tsx'
+import MemoriesEdit from './pages/memories/Edit.tsx'
 import NotFound from './pages/NotFound.tsx'
 
 const router = createBrowserRouter([
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/memories/create',
-        element: <Create />,
+        element: <MemoriesCreate />,
       },
       {
         path: 'memories/:id/edit',
-        element: <Edit />,
+        element: <MemoriesEdit />,
       },
       {
         path: '*',
