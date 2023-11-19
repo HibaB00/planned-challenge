@@ -3,6 +3,7 @@ import { submit } from "../../services/memories";
 import { NewMemory } from "../../types/Memory";
 import { useAuth } from "../../contexts/AuthContext";
 import { Button, Container, Stack, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Create() {
   const {
@@ -11,11 +12,13 @@ function Create() {
     formState: { errors },
   } = useForm<NewMemory>()
 
+  const navigate = useNavigate();
+
   const { currentUser } = useAuth();
 
   if (!currentUser) return <p>YOU DON'T HAVE ACCESS</p>
 
-  const create: SubmitHandler<NewMemory> = (data) => submit({...data, user_id: currentUser.id}).then(() => window.location = "/")
+  const create: SubmitHandler<NewMemory> = (data) => submit({...data, user_id: currentUser.id}).then(() => navigate(`/users/${currentUser.id}`))
 
   return (
     <Container maxWidth="sm">

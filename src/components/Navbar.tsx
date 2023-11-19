@@ -39,7 +39,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="success">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to={`/`}>
@@ -128,7 +128,7 @@ function Navbar() {
                   <Avatar alt="Remy Sharp" src={currentUser?.image_url}/>
                 </IconButton>
                 :
-                <Button variant="contained" color="warning" onClick={login}>LOGIN</Button>
+                <Button variant="text" color="inherit" onClick={login}>LOGIN</Button>
               }
             </Tooltip>
             <Menu
