@@ -23,7 +23,7 @@ export function show(req, res) {
 			return
 		}
 
-		db.all('SELECT * FROM memories WHERE user_id = ?', [id], (err, rows) => {
+		db.all('SELECT * FROM memories WHERE user_id = ? ORDER BY timestamp desc', [id], (err, rows) => {
 			row.memories = rows || [];
 
 			res.json(row)

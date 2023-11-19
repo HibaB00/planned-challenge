@@ -8,6 +8,7 @@ import Create from './pages/memories/Create.tsx'
 import AuthContextProvider from './contexts/AuthContext.tsx'
 import App from './components/App.tsx'
 import Edit from './pages/memories/Edit.tsx'
+import NotFound from './pages/NotFound.tsx'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: 'memories/:id/edit',
         element: <Edit />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },

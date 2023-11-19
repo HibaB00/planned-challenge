@@ -8,7 +8,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material'
-import DeleteMemory from './DeletePopUp'
+import DeleteMemoryPopUp from './DeleteMemoryPopUp'
 import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
@@ -39,7 +39,7 @@ function MemoryCard({ memory }: { memory: Memory }) {
               <Edit />
             </IconButton>
           </Link>
-          <DeleteMemory memory={memory} />
+          <DeleteMemoryPopUp memory={memory} />
         </CardActions>
       ) : null}
     </Card>

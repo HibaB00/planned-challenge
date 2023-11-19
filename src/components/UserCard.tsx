@@ -31,7 +31,7 @@ function UserCard({
           />
         </ListItem>
       </Link>
-      <IconButton aria-label='share' onClick={copyToClipboard}>
+      <IconButton aria-label='share' onClick={() => copyToClipboard}>
         <Share />
       </IconButton>
     </Stack>

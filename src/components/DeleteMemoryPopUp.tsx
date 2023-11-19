@@ -9,16 +9,14 @@ import { IconButton } from '@mui/material'
 import { Delete } from '@mui/icons-material'
 import { Memory } from '../types/Memory'
 import { remove } from '../services/memories'
-import { useAuth } from '../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
-export default function DeleteMemory({
+export default function DeleteMemoryPopUp({
   memory: { name, id },
 }: {
   memory: Memory
 }) {
   const [open, setOpen] = React.useState(false)
-  const { currentUser } = useAuth()
 
   const navigate = useNavigate()
 
@@ -30,8 +28,7 @@ export default function DeleteMemory({
     setOpen(false)
   }
 
-  const removeMemory = (id: Memory['id']) =>
-    remove(id).then(() => navigate(`/users/${currentUser?.id}`))
+  const removeMemory = (id: Memory['id']) => remove(id).then(() => navigate(0))
 
   return (
     <React.Fragment>
