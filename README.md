@@ -34,9 +34,18 @@ The landing page was designed to provide a nice starting point for any user, new
 
 This displays a listing of all the users. In a real application, this would probably be a filterable search, instead of displaying all the users, which is heavy on the data and rendering.
 
+![image](https://github.com/HibaB00/planned-challenge/assets/53578269/9a58fac3-461c-4f9b-a984-1ec58ff6d1fe)
+
 #### Show
 
 This is the main page of the website, where we display a user's profile. His memories are also displayed. A hiker icon is used to show the user's intent to begin a nice "lane" of memories, while the little trail with the sun is used to show the user's future path.
+
+You can notice three different things when the user is logged in: first, a New Memory button if the user is on its own profile, as well as an edit and delete button
+
+<p align="center">
+<image src="https://github.com/HibaB00/planned-challenge/assets/53578269/5e280b33-c748-4156-95a3-f8905d7a04a1">
+<image src="https://github.com/HibaB00/planned-challenge/assets/53578269/14aa60cc-97fe-4d5c-809e-fcaf1955028e">
+</p>
 
 ### Technical Pages
 
@@ -48,15 +57,26 @@ You're able to sort these memories by regular order (most recent to oldest), or 
 
 The page has been handled in such a way that it is possible to navigate through the memories by pressing tab, allowing for users with disability to navigate with ease.
 
+![image](https://github.com/HibaB00/planned-challenge/assets/53578269/7d873ca0-b646-4b91-92a3-8c8c3b3242c5)
+
 ### Memories
 
 #### Create & Edit
 
 The Memory Creation and Edition have been linked through a single component, as only the API calls differs between those two components. The form have been thought out and designed to respect a11y.
 
+You can notice how the submit is handled through a nice display of errors.
+
+![image](https://github.com/HibaB00/planned-challenge/assets/53578269/cd97d0ea-c18c-437b-9421-6840dee46d05)
+
 ## Mobile Responsiveness
 
 The Mobile Responsiveness has been respected, the application is usable through mobile. Even the menu has been adapted to better suit a mobile user, as they make up a good share of the internet.
+
+<p align="center">
+<image src="https://github.com/HibaB00/planned-challenge/assets/53578269/9f3e668f-1379-4d2d-8384-714bfa18faea" />
+<image src="https://github.com/HibaB00/planned-challenge/assets/53578269/b819b486-321f-46dd-9c5c-7c40af6044b0" />
+</p>
 
 ## Going further
 
